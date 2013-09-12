@@ -17,9 +17,17 @@
                 return $this->content;
             }
 
-            $this->content         =  new stdClass;
-            $this->content->text   = 'The content of our quizSMS block!';
-            $this->content->footer = 'Footer here...';
+            /* $this->content         =  new stdClass;
+             $this->content->text   = 'The content of our quizSMS block!';
+             $this->content->footer = 'Footer here...';*/
+              $this->content         =  new stdClass;
+              $this->content->text   = get_string('wantservice','block_quizsms');
+              $this->content->text   .= '<form id="form1" name="form1" method="post" action="">';
+              $this->content->text	.= '<table width="180" border="0"><tr>';
+              $this->content->text	.= '<td width="60"><input type="submit" name="ok" id="button" value="'.get_string('yes' , 'block_quizsms').'" a align="left"/></td>';
+              $this->content->text	.= '<td width="60"><input type="submit" name="no" id="button" value="'.get_string('no' , 'block_quizsms').'" a align="right"/></td>';
+              $this->content->text	.= '</tr> </table>';
+              $this->content->text	.= '</form>';
 
             return $this->content;
         }

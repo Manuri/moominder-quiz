@@ -9,5 +9,9 @@ $string['quizsms'] = 'Quiz SMS';
 $string['quizsms:addinstance']='Add a new Quiz SMS block';
 $string['quizsms:myaddinstance']='Add a new simple HTML block to the My Moodle page';
 
+$string['wantservice']='Do you want the service?';
+$string['yes']='Subscribe';
+$string['no']='Unsubscribe';
+
 
 ?>
