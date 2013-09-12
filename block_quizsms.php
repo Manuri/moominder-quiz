@@ -81,7 +81,7 @@
 
             $message = $this->create_sms($courseid,$coursename, $quizname, $startTime);
             $this->write_to_file($message);
-       // $this->sendSMS('+94718010490',$message,'+94711114843');
+            //$this->send_sms('+94718010490',$message,'+94711114843');
          }
 
         function create_sms($courseid,$coursename, $quizname,$startTime){
@@ -106,6 +106,7 @@
         function send_sms($in_number,$in_msg,$from){
 
             $url = "/cgi-bin/sendsms?username=kannelUser&password=123&from={$from}&to={$in_number}&text={$in_msg}";
+            $url = str_replace(" ", "%20", $url);
 
             $results = file('http://localhost:13013'.$url);
 
