@@ -95,7 +95,7 @@ public function send_quiz_SMS($courseid,$quizname,$startTime){
     
     $message = $this->create_SMS($courseid, $quizname, $startTime);
          $this->writeToFile($message);
-    $this->sendSMS('+94718010490',$message,'+94711114843');
+   // $this->sendSMS('+94718010490',$message,'+94711114843');
     
     
 }
@@ -128,7 +128,9 @@ public function send_quiz_SMS($courseid,$quizname,$startTime){
     
 }
 
-
+function adding($a,$b){
+    return $a+$b;
+}
     
 }
 ?>
