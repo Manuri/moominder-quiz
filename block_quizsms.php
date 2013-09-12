@@ -37,23 +37,12 @@ class block_quizsms extends block_base{
         foreach ($instances as $record){
             echo 'here I am';
             echo $cid = $record->id;
-            echo $record->name;
+            echo $quizName = $record->name;
             echo $startTime = $record->timeopen;
             
-            //testing
-            $fp = fopen("/home/amaya/Desktop/myTextttt.txt","a");
-
-
-            if($fp==false){
-                echo 'oh fp is false'; 
-            }
-            else{
-                fwrite($fp, $cid);
-                fclose($fp);
-            }
+        
+         $this->send_quiz_SMS($cid,$quizName,$startTime);
             
-            
-            //testing
         }
 
         $difference = $now - $startTime;
@@ -95,8 +84,6 @@ class block_quizsms extends block_base{
         }
 
         mtrace( "Hey, my cron script is running" );
-    
-   // echo 'quiz sms cron running !!!!!!!!!';
  
     
  
@@ -104,13 +91,44 @@ class block_quizsms extends block_base{
 }
 
 
-function send_quiz_SMS(){
-    echo 'message sent';
+public function send_quiz_SMS($courseid,$quizname,$startTime){
+    
+    $message = $this->create_SMS($courseid, $quizname, $startTime);
+         $this->writeToFile($message);
+    $this->sendSMS('+94718010490',$message,'+94711114843');
+    
+    
 }
 
  function create_SMS($courseid,$quizname,$startTime){
-     
- }  
+     $SMS = 'Quiz:'.$quizname.' of '.$courseid.' started at '.$startTime;
+     return $SMS;
+ } 
+ 
+ public function  writeToFile($message){
+     $fp = fopen("/home/amaya/Desktop/myText1.txt","a");
+
+
+            if($fp==false){
+                echo 'oh fp is false'; 
+            }
+            else{
+                fwrite($fp, $message);
+                fclose($fp);
+            }
+ }
+
+
+ public function sendSMS($in_number,$in_msg,$from)
+ {
+
+    $url = "/cgi-bin/sendsms?username=kannelUser&password=123&from={$from}&to={$in_number}&text={$in_msg}";
+
+    $results = file('http://localhost:13013'.$url);
+    
+}
+
+
     
 }
 ?>
