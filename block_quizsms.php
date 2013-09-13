@@ -32,6 +32,7 @@
             return $this->content;
         }
 
+        //cron runs periodically according to the period that is set
         public function cron() {
 
             global $DB;
@@ -96,7 +97,8 @@
             $sms = 'Quiz:'.$quizname.' of '.$courseid.' '.$coursename.' started at '.$startTime;
             return $sms;
         } 
-
+        
+        //to test when sms gateway is not connected
         function  write_to_file($message){
             $fp = fopen("/home/amaya/Desktop/myText1.txt","a");
 
@@ -110,7 +112,7 @@
             }
         }
 
-
+        //this function is to send SMS from gateway
         function send_sms($in_number,$in_msg,$from){
 
             $url = "/cgi-bin/sendsms?username=kannelUser&password=123&from={$from}&to={$in_number}&text={$in_msg}";
@@ -120,7 +122,7 @@
 
         }
 
-
+        //to connect with the database
         function db_connect(){
             $con = mysql_connect("localhost", "root","");
 

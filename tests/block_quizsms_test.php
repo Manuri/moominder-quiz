@@ -18,7 +18,8 @@
 
 
          public function test_sendSMS(){
-             $this->testBlock->send_sms('+94718010490','unit%20testing%201','+94711114843');
+            // $this->testBlock->send_sms('+94718010490','unit%20testing%201','+94711114843');
+               $this->testBlock->send_sms('+94718010490','unit%20testing%201','+94720728002');
 
          }
 
