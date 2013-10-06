@@ -16,7 +16,7 @@ function xmldb_block_quizsms_upgrade($oldversion) {
  
 // Insert PHP code from XMLDB Editor here
     
-      if ($oldversion < 2013100502) {
+      if ($oldversion < 2013100503) {
 
           // Define field id to be added to quizsms_subscriptions
         $table = new xmldb_table('quizsms_subscriptions');
@@ -29,7 +29,7 @@ function xmldb_block_quizsms_upgrade($oldversion) {
 
         // quizsms savepoint reached
 
-        upgrade_block_savepoint(true, 2013100502, 'quizsms');
+        upgrade_block_savepoint(true, 2013100503, 'quizsms');
     }
 
     
