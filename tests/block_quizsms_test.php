@@ -30,6 +30,34 @@
          public function test_db_connect(){
              $this->assertNotNull($this->testBlock->db_connect());
          }
+         
+         public function test_quizsms_service_subscribe(){
+             global $DB;
+             $this->resetAfterTest(true);
+             $this->testBlock->quizsms_service_subscribe(10,'9999999999');
+             //$this->assertEquals(4, $DB->count_records('quizsms_subscriptions',array()));
+             $this->assertEquals(1, $DB->count_records('quizsms_subscriptions', array('userid'=>10)));
+         }
+         
+         public function test_quizsms_service_unsubscribe(){
+             global $DB;
+             
+             $this->resetAfterTest(true);
+             $this->testBlock->quizsms_service_subscribe(10,'9999999999');
+             $this->assertTrue($this->testBlock->quizsms_service_unsubscribe(10),'Un-subscription is not working');
+             
+         }
+         
+         public function test_check_courses_and_subscribed_users(){
+             
+         }
+
+         public function test_api_function(){
+             global $DB;
+             
+             //$this->assertEmpty($DB->get_records('quizsms_subscriptions'),'not empty');
+             // $this->assertEmpty($DB->get_records('course'),'not empty');
+         }
     }
 
 ?>

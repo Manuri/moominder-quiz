@@ -4,6 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+require_once '/var/www/moodle/blocks/quizsms/version.php';
 
 class block_quizsms extends block_base {
 
@@ -208,7 +209,7 @@ class block_quizsms extends block_base {
             $DB->delete_records('quizsms_subscriptions', array("userid" => $userid));
             return true;
         }
-        return true;
+        return false;
     }
 
     function check_quizzes_and_notify_subscribers() {
@@ -234,16 +235,16 @@ class block_quizsms extends block_base {
     function check_courses_and_subscribed_users($difference, $cid, $quizName, $startTime) {
         global $DB;
 
-        $this->db_connect();
+      //  $this->db_connect();
 
         $context = $context = context_course::instance($cid);
         $enrolled_users = get_enrolled_users($context);
-        $subscribed_users = $DB->get_records_sql('select * from mdl_quizsms_subscriptions');
+        // $subscribed_users = $DB->get_records_sql('select * from mdl_quizsms_subscriptions');
+        $subscribed_users = $DB->get_records('quizsms_subscriptions');
 
-        //if ($difference >= 0 && $difference <= 1) {
-        if ($difference >= 0) {
-            //$this->write_to_file('difference>=0');
-            $result = mysql_query("select shortname from mdl_course where id = $cid");
+        if ($difference >= 0 && $difference <= 60) {
+            // $result = mysql_query("select shortname from mdl_course where id = $cid");
+            $result = $DB->get_records_select('course', "id = $cid");
 
             if (!$result) { // add this check.
                 die('Invalid query: ' . mysql_error());
