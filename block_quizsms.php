@@ -1,14 +1,18 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Quiz SMS block
+ *
+ * @package    blocks
+ * @subpackage quizsms
+ * @copyright  2013 Amaya Perera 
+ * 
  */
 
 class block_quizsms extends block_base {
 
     public function init() {
-        //$this->title = get_string('quizsms', 'block_quizsms');
+        $this->title = get_string('quizsms', 'block_quizsms');
         // $this->title = $this->config->title;
          $this->specialization();
         /*  if(empty($this->config->gateway)){
@@ -44,21 +48,25 @@ class block_quizsms extends block_base {
 
         $this->get_input_from_interace();
 
-        echo $this->config->gateway;
+        //echo $this->config->gateway;
 
         return $this->content;
     }
 
     public function specialization() {
+        $this->config = new stdClass;
         if (!empty($this->config->title)) {
+            //$this->title = new stdClass;
             $this->title = $this->config->title;
+            //$this->content->title = $this->config->title;
         } else {
-            //$this->config->title = 'Quiz SMS';
-            $this->title = 'Quiz SMS';
+           $this->config->title = 'Quiz SMS';
+            //$this->title = 'Quiz SMS';
         }
         if (empty($this->config->gateway)) {
             $this->config->gateway = '+94711114843';
         }
+         
         
         if (empty($this->config->pwd)) {
             $this->config->pwd = '123';
@@ -85,6 +93,8 @@ class block_quizsms extends block_base {
 
         //$this->send_sms($to, $message,'+94711114843');
         $from = $this->config->gateway;
+        
+        
         $this->send_sms($to, $message, $from);
     }
 
@@ -118,6 +128,7 @@ class block_quizsms extends block_base {
         $url = str_replace(" ", "%20", $url);
 
        // $results = file('http://localhost:13013' . $url);
+        
          $results = file($baseurl.$url);
     }
 
