@@ -20,5 +20,11 @@ $string['error_no_telno'] = 'Sorry, you have not entered your telphone number. P
 $string['error_wrong_format'] = 'You have to enter your telephone number in the international standard Ex: +94';
 $string['prefix_telno'] = '+94';
 
+$string['gateway']='SMS Gateway';
+$string['pwd']='Kannel Password';
+$string['username']='Kannel Username';
+$string['baseurl']='Set URL';
+$string['blocktitle'] = 'Block title';
+
 
 ?>
